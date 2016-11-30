@@ -5,7 +5,7 @@
 /*we want to make sure that no local variables bleed into the global scope
 * */
 
-/*(function(){
+(function(){
 
 //best practice for protecting us from making mistakes
 'use strict';
@@ -18,7 +18,10 @@ angular.module('myFirstApp', [])
 //define the view of our model
 .controller("myFirstCtrl", DIController);
 
-    function DIController ($scope, $filter, $injector){
+    // use this array as guidance to see which service to inject into which argument and the DIController function itself
+    myFirstCtrl.$inject = ['$scope', '$filter'];
+
+    function DIController ($scope, $filter){
         $scope.name = "Nelson";
 
 
@@ -31,19 +34,9 @@ angular.module('myFirstApp', [])
             var upCase = $filter('uppercase');
             $scope.name = upCase($scope.name);
         };
-
-        console.log($injector.annotate(DIController));
     }
 
-    function AnnotateMe( name, job, salary){
-        var sentence = "My name is " + name + " , my job is " + job + " and i get " + salary;
-        return sentence;
-    }
+})();
 
-    console.log(AnnotateMe());
-
-})();*/
-
-
-// Code minification-friendly
-!function(){"use strict";function n(e,o,r){e.name="Nelson",e.lower=function(){var n=o("lowercase");e.name=n(e.name)},e.upper=function(){var n=o("uppercase");e.name=n(e.name)},console.log(r.annotate(n))}function e(n,e,o){var r="My name is "+n+" , my job is "+e+" and i get "+o;return r}angular.module("myFirstApp",[]).controller("myFirstCtrl",["$scope","$filter","$injector",n]),console.log(e())}();
+// minification-friendly code
+!function(){"use strict";function e(e,n){e.name="Nelson",e.lower=function(){var r=n("lowercase");e.name=r(e.name)},e.upper=function(){var r=n("uppercase");e.name=r(e.name)}}angular.module("myFirstApp",[]).controller("myFirstCtrl",e),myFirstCtrl.$inject=["$scope","$filter"]}();
