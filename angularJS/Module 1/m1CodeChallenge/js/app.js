@@ -21,32 +21,69 @@ angular.module('myFirstApp', [])
 
     function Evaluate ($scope){
 
-        var comma = ","; //define separator
-        var numItems =[]; //array of items
-        var len = 0; //number of items in array
-        var count = 0; //auxiliar variable to compare
+        var count = 0;
+        var separator = ",";
+        $scope.message = "";
+        var numSplits = 0;
+        var newInput = "";
+        var newEvaluation = "";
 
-        //auxiliar function - split string by specified separator
+        //function that splits string and return result
         function splitString(stringToSplit, separator){
-
-            numItems = stringToSplit.split(separator);
-            len = numItems.length;
-            return len;
+            var newStr = "";
+            var arrayofStrings = "";
+            var lastChar = stringToSplit.slice(-1);
+            //check if last char is a ","
+            if(lastChar == ','){
+                newStr = stringToSplit.substring(0, stringToSplit.length-1); //remove last character
+                newEvaluation = checkEmptyItems(newStr);
+                $scope.evaluation = newEvaluation; // update input text
+                arrayofStrings = newEvaluation.split(separator);
+             }else{
+                newStr = stringToSplit;
+                newEvaluation = checkEmptyItems(newStr);
+                $scope.evaluation = newEvaluation; // update input text
+                arrayofStrings = newEvaluation.split(separator);
+             }
+            return arrayofStrings.length;
         }
 
-        //Parse string and check if lunch is too much
-        $scope.isToMuch = function (val){
-
-            count = splitString(val, comma);
-            if (count > 0){
-                return true;
-            }else{
-                return false;
+        //function that checks empty items towards the count
+        function checkEmptyItems (nStr){
+            var array = [];
+            numSplits = nStr.split(separator);
+            for(var i=0; i < numSplits.length; i++){
+                if(numSplits[i].length>0){
+                    array.push(numSplits[i]);
+                }
             }
+            newInput = array.join();
+            return newInput;
+        }
+
+        $scope.validateFood = function (val) {
+
+
+         if (val){
+              count = splitString(val, separator);
+              if(count > 3){
+                $scope.message = "Too much!";
+                $scope.myStyle = {color: 'green'};
+                $scope.myText = {border:  '1px solid green'};
+              }else{
+                $scope.message = "Enjoy!";
+                $scope.myStyle = {color: 'green'};
+                $scope.myText = {border:  '1px solid green'};
+              }
+          }else{
+            $scope.message = "Please enter data first";
+            $scope.myStyle = {color: 'red'};
+            $scope.myText = {border:  '1px solid red'};
+          }
+
         };
 
-
-    };
+    }
 
 
 })();

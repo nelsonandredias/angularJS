@@ -28,13 +28,14 @@
                     <form>
                         <div class="form-group">
                             <label for="Lunch">List what you usually eat for lunch:</label>
-                            <input type="text" class="form-control" id="Lunch" placeholder="Type here" ng-model="evaluation">
+                            <input type="text" class="form-control" id="Lunch" placeholder="Type here" ng-model="evaluation" ng-style="myText">
                         </div>
                         <p id="guideline">* List comma-separated items </p>
+                        <p id="guideline">* empty items (i.e. ", ,") are not considered </p>
+                        <p ng-style="myStyle">{{message}}</p>
 
-                        <div ng-show="isToMuch(evaluation)">
-                            <p>Too much!</p>
-                        </div>
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="validateFood(evaluation)">Check If Too Much</button>
+                        {{numFullItems}}
 
                     </form>
                 </div>
