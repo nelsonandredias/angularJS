@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/angular.min.js"></script>
+
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="shoppingApp">
+<h1>Ng-Repeat</h1>
+    <div ng-controller="shoppingCtrl">
+
+        <!-- Shopping List 1-->
+        <div> Shopping List1: </div>
+        <input type="text" ng-model="search" placeholder="filter ">
+        <ul>
+            <!-- item represents a string -->
+            <li ng-repeat="item in shoppingList1 | filter : search">{{item}}</li>
+        </ul>
+        <br>
+        <!-- Shopping List 2-->
+        <!--<div> Shopping List2: </div>
+        <ul>
+            &lt;!&ndash; item represents an object &ndash;&gt;
+            <li ng-repeat="item in shoppingList2">Buy {{item.quantity}} of {{item.name}}(s)</li>
+        </ul>-->
+        <br>
+        <!-- we are creating a watch for the quantity of the first item: the value of the input will change the quantity of the first item-->
+        <p>Change the quantity of the first item</p>
+        <input type="text" ng-model="shoppingList2[0].quantity">
+        <!-- Shopping List 3-->
+        <div> Shopping List3: </div>
+        <ul>
+            <!-- item represents an object numbered one by one -->
+            <li ng-repeat="item in shoppingList2">{{$index + 1}} - Buy {{item.quantity}} of {{item.name}}(s)</li>
+        </ul>
+
+        <input type="text" ng-model="newItemName" placeholder="add new item name">
+        <input type="text" ng-model="newItemQuantity" placeholder="add new item quantity">
+        <button ng-click="addToList()">Add new Item</button>
+
+    </div>
+
+</body>
+</html>
