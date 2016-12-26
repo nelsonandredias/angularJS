@@ -1,0 +1,27 @@
+
+body{
+    background-color: white;
+}
+
+.jumbotron {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border: 1px dashed deeppink;
+}
+
+#guideline {
+
+    font-size: 10px;
+
+}
+
+div{
+    line-height: 50px;
+}
+
+#center{
+    margin: 0 auto;
+    padding: 10px;
+}
