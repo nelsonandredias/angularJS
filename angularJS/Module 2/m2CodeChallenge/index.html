@@ -27,16 +27,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <form class="form-group text-center">
-                            <label class="col-sm-12 col-md-12 col-lg-12 control-label" for="BuyItemName">Add item name</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 control-label title" for="BuyItemName" >Add item name</label>
                             <div class="col-sm-12 col-md-12 col-lg-12" >
                                 <input class="form-control" id="BuyItemName" type="text" ng-model="BuyList.itemName">
                             </div>
-                            <label class="col-sm-12 col-md-12 col-lg-12 control-label" for="BuyItemQuantity">Add item quantity</label>
+                            <label class="col-sm-12 col-md-12 col-lg-12 control-label title" for="BuyItemQuantity">Add item quantity</label>
                             <div class="col-sm-12 col-md-12 col-lg-12" >
                                 <input class="form-control" id="BuyItemQuantity" type="text" ng-model="BuyList.itemQuantity">
                             </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12" id="center">
-                                <button type="button" class="btn btn-success" ng-click="BuyList.addItem();">Add Item To Shopping List</button>
+                            <div class="col-sm-12 col-md-12 col-lg-12 center">
+                                <button type="button" class="btn btn-success " ng-click="BuyList.addItem();">Add Item To Shopping List</button>
                             </div>
                             <br>
                         </form>
@@ -46,30 +46,35 @@
                     <div class="row">
                         <!-- To Buy List -->
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h3 class="text-center">To Buy</h3>
-                            <ol>
-                                <li ng-repeat="item in BuyList.items">
-                                       <!--<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">-->
+                            <h3 class="text-center title">To Buy</h3>
+                            <div class="text-center">
+                                <li ng-repeat="item in BuyList.toBuyList">
+                                       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-center" id="item">
                                             Buy {{item.quantity}} {{item.name}}
-                                        <!--</div>
-                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">-->
-                                            <button type="button" class="btn btn-primary .btn-xs"  ng-click="BuyList.boughtItem($index);">Bought</button>
-                                       <!-- </div>-->
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                            <button type="button" class="btn btn-primary .btn-xs"  ng-click="BuyList.removeItem($index);">Bought</button>
+                                       </div>
                                 </li>
 
-                            </ol>
-                            <div class="error">Error: {{BuyList.errorMessage}}</div>
+                            </div>
+                            <!-- Show message if "To Buy" list is empty-->
+                            <div ng-if="!BuyList.toBuyList.length" class="error">
+                                <p class="text-center" style="color: green;">Everything is bought!</p>
+                            </div>
                         </div>
                         <!-- Already Bought List -->
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"  ng-controller="AlreadyBoughtController as BoughtList">
-                            <h3 class="text-center">Already Bought</h3>
-                            <ol>
-                                <li ng-repeat="item in BoughtList.items">
-                                    {{item.quantity}} of {{item.name}}
-                                    <button type="button" class="btn btn-primary" ng-click="BoughtList.removeItem($index);">Bought</button>
+                            <h3 class="text-center title">Already Bought</h3>
+                            <ol class="text-center">
+                                <li ng-repeat="item in BoughtList.boughtList">
+                                    Bought {{item.quantity}} {{item.name}}
                                 </li>
                             </ol>
-                            <div class="error">Error: {{BoughtList.errorMessage}}</div>
+                            <!-- Show message if "Already Bought" list is empty-->
+                            <div ng-if="!BoughtList.boughtList.length" class="error">
+                                <p class="text-center" style="color: red;">Nothing bought yet</p>
+                            </div>
                         </div>
                     </div>
                 </div>

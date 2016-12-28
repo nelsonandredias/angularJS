@@ -27,11 +27,18 @@ angular.module('ShoppingListCheckOff', [])
         itemAdder.itemName = "";
         itemAdder.itemQuantity = "";
 
-        itemAdder.items = ShoppingListCheckOffService.getBuyItems();
+        itemAdder.toBuyList = ShoppingListCheckOffService.getBuyItems();
+
+
 
         itemAdder.addItem = function () {
             ShoppingListCheckOffService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
         };
+
+        itemAdder.removeItem = function (itemIndex) {
+            ShoppingListCheckOffService.removeItem(itemIndex);
+        };
+
     }
 
     //Already Bought Controller
@@ -39,11 +46,9 @@ angular.module('ShoppingListCheckOff', [])
     function AlrBoughtCtrl(ShoppingListCheckOffService) {
         var showList = this;
 
-        showList.items = ShoppingListCheckOffService.getBoughtItems();
+        showList.boughtList = ShoppingListCheckOffService.getBoughtItems();
 
-        showList.removeItem = function (itemIndex) {
-            ShoppingListCheckOffService.removeItem(itemIndex);
-        };
+
     }
 
 
@@ -54,36 +59,42 @@ angular.module('ShoppingListCheckOff', [])
         var service = this;
 
         // List of items to buy
-        var toBuyItems = [{name: "Cookies", quantity: 10},
-            {name: "Cookies", quantity: 10},
-            {name: "Cookies", quantity: 10},
-            {name: "Cookies", quantity: 10},
-            {name: "Cookies", quantity: 10},
-            {name: "Cookies", quantity: 10}];
+        var toBuyList = [{name: "Cookies", quantity: 10},
+            {name: "Milk", quantity: 1},
+            {name: "Soda", quantity: 2},
+            {name: "Chips", quantity: 3},
+            {name: "Chicken", quantity: 2},
+            {name: "Water", quantity: 5}];
 
-        var boughtItems = [];
+        // List of items already bought
+        var boughtList = [];
 
-        service.addItem = function (itemName, itemQuantity) { // service method responsible to add elements to Shopping List
-            var item = {
+        // service method responsible to add items to Buy List
+        service.addItem = function (itemName, itemQuantity) {
+            var Buyitem = {
                 name: itemName,
                 quantity: itemQuantity
             };
-            toBuyItems.push(item);
+            toBuyList.push(Buyitem);
         };
 
-        service.removeItem = function (itemIndex) { // service method responsible to remove elements of Shopping List
-            var ItemBought = 34;
-            boughtItems.splice(ItemBought);
-            toBuyItems.splice(itemIndex, 1);
+        // service method responsible to remove elements of "To Buy" list and add to "Already Bought" list
+        service.removeItem = function (itemIndex) {
+            boughtList.push(toBuyList[itemIndex]);
+            toBuyList.splice(itemIndex, 1);
+
         };
 
-        service.getBuyItems = function () { // service method responsible to show all elements in Shopping List
-            return toBuyItems;
+        // service method responsible to show all elements of "To Buy" List
+        service.getBuyItems = function () {
+                return toBuyList;
         };
 
-        service.getBoughtItems = function () { // service method responsible to show all elements in Shopping List
-            return boughtItems;
+        // service method responsible to show all elements in "Already Bought" List
+        service.getBoughtItems = function () {
+            return boughtList;
         };
+
     }
 
 
