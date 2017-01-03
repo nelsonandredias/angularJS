@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/angular.min.js"></script>
+
+    <script src="js/app.js"></script>
+</head>
+<body >
+<h1>Custom Services Through a Factory</h1>
+
+    <!-- List 1 - unlimited items -->
+    <div id="list1" ng-controller="ShoppingListController1 as list">
+        <h3> Shopping List 1</h3>
+        <input type="text" ng-model="list.itemName" placeholder="Add item name"><br>
+        <input type="text" ng-model="list.itemQuantity" placeholder="Add item quantity"><br>
+        <button ng-click="list.addItem();">Add Item To Shopping List</button>
+        <br>
+        <ol>
+            <list-item  ng-repeat="item in list.items"></list-item>
+        </ol>
+        <div class="error">Error: {{list.errorMessage}}</div>
+    </div>
+
+    <!-- List 2 - limited to 3 items -->
+    <div id="list2" ng-controller="ShoppingListController2 as list">
+        <h3> Shopping List 2 - limited to 3 items</h3>
+        <input type="text" ng-model="list.itemName" placeholder="Add item name"><br>
+        <input type="text" ng-model="list.itemQuantity" placeholder="Add item quantity"><br>
+        <button ng-click="list.addItem();">Add Item To Shopping List</button>
+        <br>
+        <ol>
+            <list-item  ng-repeat="item in list.items"></list-item>
+        </ol>
+        <div class="error">Error: {{list.errorMessage}}</div>
+    </div>
+
+</body>
+</html>
