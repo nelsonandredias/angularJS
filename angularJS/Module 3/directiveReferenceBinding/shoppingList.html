@@ -1,0 +1,10 @@
+<h3>{{ list.title }}</h3>
+<ol>
+    <li ng-repeat="item in list.items">
+        {{item.quantity}} of {{item.name}}
+        <button ng-click="list.badRemove($index);">Bad Remove Item</button>
+        <button ng-click="list.onRemove({index: $indexcd ..});">Remove Item</button>
+    </li>
+</ol>
+<!-- functionality declared on the directive's controller -->
+<div style="color: red;" ng-if="list.cookiesInList()">Warning! Cookies detected!</div>
