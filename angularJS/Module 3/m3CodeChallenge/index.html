@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NarrowItDownApp">
+<head>
+    <meta charset="UTF-8">
+    <!-- design responsive to mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module3-Code Assignment</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body ng-controller="NarrowItDownController as narrow">
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <div class="row">
+            <h3 class="text-center">Restaurant App</h3>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <form class="form-inline text-center">
+                            <div class="form-group">
+                                <label class=" col-sm-12 col-md-12 col-lg-12 title" for="BuyItemName" >Search Menu Item Description</label>
+                                <div class="col-sm-12 col-md-12 col-lg-12" >
+                                    <input class="form-control" id="BuyItemName" type="text" ng-model="narrow.itemName" style="width: 60%; margin: 0 auto;">
+                                    <div style="margin: 50px;">
+                                        <button class="btn btn-success btn-lg" ng-click="narrow.itemSubmit();">Narrow It Down <br> For Me!</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div ng-show="narrow.errorMessage" class="error">
+                        Error: {{narrow.errorMessage}}
+                    </div>
+                    <!-- Lists section -->
+                    <div class="row">
+                         <!--Retrieved List -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h3 class="text-center title">Items</h3>
+                            <div class="row">
+                                <div class="col-sm-4 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Name (Short Name)</div>
+                                <div class="col-sm-8 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Description</div>
+                            </div>
+                            <div class="text-center">
+                                <li ng-repeat="item in narrow.list">
+                                    <div class="row">
+                                       <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4 text-center">
+                                            {{item.name}} ({{item.shortName}})
+                                       </div>
+                                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center" id="item" >
+                                            {{item}}
+                                        </div>
+                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                            <button type="button" class="btn btn-danger .btn-xs"  ng-click="narrow.removeItem($index);">Don't want this one!</button>
+                                       </div>
+                                    </div>
+                                </li>
+                            </div>
+                             <!--Show message if "To Buy" list is empty
+                            <div ng-if="!BuyList.toBuyList.length" class="error">
+                                <p class="text-center" style="color: green;">Everything is bought!</p>
+                            </div>-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
