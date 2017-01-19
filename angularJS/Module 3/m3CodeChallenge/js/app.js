@@ -22,6 +22,7 @@ angular.module('NarrowItDownApp', [])
         /* as a Controller as Syntax, we are attaching all properties directly to the instance of the controller
          that is automatically attached to $scope for us*/
         var narrow = this;
+        var found = [];
 
         narrow.itemName = "";
 
@@ -32,7 +33,9 @@ angular.module('NarrowItDownApp', [])
                 var promise = MenuSearchService.getMatchedMenuItems(narrow.itemName);
 
                 promise.then(function (response) {
-                    narrow.list = response;
+                    found = response;
+
+                    narrow.list = found;
                     narrow.errorMessage = "";
 
                 })
@@ -78,7 +81,7 @@ angular.module('NarrowItDownApp', [])
                 return accessDB.then(function success (response) {
 
                         var array = response.data.menu_items;
-                        var found = [];
+                        var itemsFound = [];
                         var objDescription = {};
 
                         for (var i = 0; i < array.length; i ++){
@@ -87,13 +90,13 @@ angular.module('NarrowItDownApp', [])
                             // check if string searched appears anywhere in the description of the item
                             if(descriptionString.search(itemName) > 0 ){
                                 objDescription = {"shortName": array[i].short_name, "name": array[i].name, "description": array[i].description};
-                                found.push(objDescription);
+                                itemsFound.push(objDescription);
                             }
 
                         }
 
-                        if(found.length > 0){ // if found, return results
-                            return found;
+                        if(itemsFound.length > 0){ // if found, return results
+                            return itemsFound;
                         }else{
                             throw new Error("Nothing found");
                         }
