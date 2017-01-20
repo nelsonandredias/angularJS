@@ -13,8 +13,28 @@
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
-/*.service('getDescriptionItemService', getDescriptionItemService)*/
+.directive('foundItems', FoundItems)
 .constant("ApiBasePath","http://davids-restaurant.herokuapp.com");// constant function that's evoked everytime on the angular module
+
+
+    //factory directive function - to display list
+    function FoundItems (){
+        var ddo = {
+            templateUrl: "itemList.html"
+            /*scope: {
+                items: "<", // one way-binding because we don't want to change anything about the items
+                title: "@title",
+                onRemove: "&"
+            },
+            controller: NarrowItDownController,
+            bindToController: true, // tell angular we want to bind all of the scope variables to our controller
+            controllerAs: "list", // label used inside itemList.html (directive's template)
+            link: ShoppingListDirectiveLink,
+            transclude: true*/
+        };
+        return ddo;
+    }
+
 
     //Narrow List Controller
     NarrowItDownController.$inject = ['MenuSearchService']; //inject the service in the controller
@@ -52,9 +72,9 @@ angular.module('NarrowItDownApp', [])
         };
 
         //function that remove item from list
-        /*narrow.removeItem = function (itemIndex) {
+        narrow.removeItem = function (itemIndex) {
             MenuSearchService.removeItem(itemIndex);
-        };*/
+        };
 
     }
 
@@ -65,7 +85,7 @@ angular.module('NarrowItDownApp', [])
         /* as a Controller as Syntax, we are attaching all properties directly to the instance of the controller
          that is automatically attached to $scope for us*/
         var service = this;
-
+        var found = [];
 
         //service method "getMatchedMenuItems" to reach out to the server and retrieve the list of raw menu items data
         service.getMatchedMenuItems = function (itemName) {
@@ -94,6 +114,8 @@ angular.module('NarrowItDownApp', [])
                             }
 
                         }
+
+                        found = itemsFound;
 
                         if(itemsFound.length > 0){ // if found, return results
                             return itemsFound;

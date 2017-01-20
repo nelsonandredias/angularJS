@@ -52,6 +52,12 @@
                                 <div class="col-sm-4 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Name (Short Name)</div>
                                 <div class="col-sm-8 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Description</div>
                             </div>
+                            <found-items ng-repeat="item in narrow.list"></found-items>
+
+                            <!--<div class="row">
+                                <div class="col-sm-4 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Name (Short Name)</div>
+                                <div class="col-sm-8 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Description</div>
+                            </div>
                             <div class="text-center">
                                 <li ng-repeat="item in narrow.list">
                                     <div class="row">
@@ -66,7 +72,7 @@
                                        </div>
                                     </div>
                                 </li>
-                            </div>
+                            </div>-->
                              <!--Show message if "To Buy" list is empty
                             <div ng-if="!BuyList.toBuyList.length" class="error">
                                 <p class="text-center" style="color: green;">Everything is bought!</p>
