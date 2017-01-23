@@ -20,12 +20,11 @@ angular.module('NarrowItDownApp', [])
     //factory directive function - to display list
     function FoundItems (){
         var ddo = {
-            templateUrl: "itemList.html"
-            /*scope: {
-                items: "<", // one way-binding because we don't want to change anything about the items
-                title: "@title",
-                onRemove: "&"
-            },
+            templateUrl: "itemList.html",
+            scope: {
+                narrow: "<myList" // one way-binding because we don't want to change anything about the items
+            }
+            /*
             controller: NarrowItDownController,
             bindToController: true, // tell angular we want to bind all of the scope variables to our controller
             controllerAs: "list", // label used inside itemList.html (directive's template)

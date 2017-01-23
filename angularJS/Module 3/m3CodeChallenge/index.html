@@ -52,27 +52,9 @@
                                 <div class="col-sm-4 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Name (Short Name)</div>
                                 <div class="col-sm-8 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Description</div>
                             </div>
-                            <found-items ng-repeat="item in narrow.list"></found-items>
+                            <!--<found-items ng-repeat="item in narrow.list"></found-items>-->
+                            <found-items my-list="narrow"></found-items>
 
-                            <!--<div class="row">
-                                <div class="col-sm-4 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Name (Short Name)</div>
-                                <div class="col-sm-8 text-center" style="border-bottom: 1px solid #222222; font-weight: bold; font-size: 20px;">Description</div>
-                            </div>
-                            <div class="text-center">
-                                <li ng-repeat="item in narrow.list">
-                                    <div class="row">
-                                       <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4 text-center">
-                                            {{item.name}} ({{item.shortName}})
-                                       </div>
-                                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center" id="item" >
-                                            {{item}}
-                                        </div>
-                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                            <button type="button" class="btn btn-danger .btn-xs"  ng-click="narrow.removeItem($index);">Don't want this one!</button>
-                                       </div>
-                                    </div>
-                                </li>
-                            </div>-->
                              <!--Show message if "To Buy" list is empty
                             <div ng-if="!BuyList.toBuyList.length" class="error">
                                 <p class="text-center" style="color: green;">Everything is bought!</p>
