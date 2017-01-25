@@ -22,16 +22,33 @@ angular.module('NarrowItDownApp', [])
         var ddo = {
             templateUrl: "itemList.html",
             scope: {
-                narrow: "<myList" // one way-binding because we don't want to change anything about the items
-            }
-            /*
-            controller: NarrowItDownController,
+                items: "<", // one way-binding because we don't want to change anything about the items
+                onRemove: "&"
+            },
+            controller: ItemListDirectiveController,
             bindToController: true, // tell angular we want to bind all of the scope variables to our controller
-            controllerAs: "list", // label used inside itemList.html (directive's template)
-            link: ShoppingListDirectiveLink,
-            transclude: true*/
+            controllerAs: "narrow" // label used inside itemList.html (directive's template)
         };
         return ddo;
+    }
+
+    // Directive Controller
+    function ItemListDirectiveController() {
+
+        var narrow = this;
+
+        narrow.itemsInList = function(itemsArray){
+
+            if(itemsArray <= 0){
+                return true;
+            }else{
+                return false;
+            }
+
+
+        };
+
+
     }
 
 
@@ -72,8 +89,19 @@ angular.module('NarrowItDownApp', [])
 
         //function that remove item from list
         narrow.removeItem = function (itemIndex) {
-            MenuSearchService.removeItem(itemIndex);
+
+                var teste =  MenuSearchService.removeItem(itemIndex);
+
+                console.log("nº items" + teste);
+                if(teste > 0){
+                    narrow.errorMessage = "";
+                }else{
+                    narrow.errorMessage = "Nothing found";
+                }
+
+
         };
+
 
     }
 
@@ -135,7 +163,12 @@ angular.module('NarrowItDownApp', [])
 
         // service method responsible to remove elements of Shopping List
         service.removeItem = function (itemIndex) {
-            found.splice(itemIndex, 1);
+
+                found.splice(itemIndex, 1);
+
+                return found.length;
+
+
         };
 
     }

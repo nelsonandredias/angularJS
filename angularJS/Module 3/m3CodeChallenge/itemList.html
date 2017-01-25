@@ -1,6 +1,6 @@
 
 <div class="text-center">
-    <li ng-repeat="item in narrow.list">
+    <li ng-repeat="item in narrow.items">
         <div class="row">
             <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4 text-center">
                 {{item.name}} ({{item.shortName}})
@@ -9,9 +9,8 @@
                 {{item.description}}
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <button type="button" class="btn btn-danger .btn-xs"  ng-click="narrow.removeItem($index);">Don't want this one!</button>
+                <button type="button" class="btn btn-danger .btn-xs"  ng-click="narrow.onRemove({index: $index});">Don't want this one!</button>
             </div>
         </div>
     </li>
-
 </div>
