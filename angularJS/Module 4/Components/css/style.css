@@ -30,3 +30,9 @@ div{
     margin: 0 auto;
     padding: 30px;
 }
+
+.error{
+    color: red;
+    front-weight: bold;
+    display: none;
+}

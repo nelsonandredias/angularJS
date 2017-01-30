@@ -27,7 +27,8 @@ angular.module("ShoppingListComponentApp", [])
 });
 
     // Component's Controller
-    function ShoppingListComponentController(){
+    ShoppingListComponentController.$inject = ['$scope', '$element'];
+    function ShoppingListComponentController($scope, $element){
         var $ctrl = this;
 
         //if there is a cookie in the shooping list, display a warning
@@ -46,7 +47,41 @@ angular.module("ShoppingListComponentApp", [])
         $ctrl.remove = function (myIndex) {
             //the key(we're mapping index on index.html) has to match the name used in the binding on our shopping list Component (index.html)
             $ctrl.onRemove({index: myIndex});
-        }
+        };
+
+
+        //use life cycle methods of the component
+
+            // $onInit method is only executed once, when the controller is instanciated
+            $ctrl.$onInit = function () {
+              console.log("We are in $onInit();");
+
+            };
+
+            // $onChanges method that's going to have a changeObj that's going to get pass to controller by the angular framework
+            $ctrl.$onChanges = function (changeObj) {
+              console.log("Changes: ", changeObj);
+
+            };
+
+
+            // $postLink method allow me to manipulate the DOM
+            $ctrl.$postLink = function () {
+                $scope.$watch("$ctrl.cookiesInList()", function (newVal, oldVal) {
+                    console.log("element: ", $element);
+                    if(newVal === true){
+                        //Show warning
+                        var warningElem = $element.find('div.error');
+                        warningElem.slideDown(900);
+                    }else{
+                        //Hide warning
+                        var warningElem = $element.find('div.error');
+                        warningElem.slideUp(900);
+                    }
+                });
+            };
+
+
     }
 
 
