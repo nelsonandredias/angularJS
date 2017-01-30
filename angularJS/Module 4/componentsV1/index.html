@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListComponentApp">
+<head>
+    <meta charset="UTF-8">
+    <!-- design responsive to mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module4-Components</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body ng-controller="ShoppingListController as list">
+
+    <h3 class="text-center">Shopping List with Components</h3>
+
+    <div id="list">
+        <input type="text" ng-model="list.itemName" placeholder="item name">
+        <input type="text" ng-model="list.itemQuantity" placeholder="item quanity">
+        <button ng-click="list.addItem();">Add Item</button>
+        <br>
+        <span>{{list.lastRemoved}}</span>
+
+        <shopping-list
+            items="list.items"
+            title="{{list.title}}"
+            on-remove="list.removeItem(index)">
+        </shopping-list>
+
+    </div>
+
+</body>
+</html>
