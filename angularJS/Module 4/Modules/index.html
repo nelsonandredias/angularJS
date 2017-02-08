@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListModule">
+<head>
+    <meta charset="UTF-8">
+    <!-- design responsive to mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module4-Modules</title>
+
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body ng-controller="ShoppingListController as list">
+
+    <h3 class="text-center">Shopping List with Modules</h3>
+
+    <div id="list">
+        <input type="text" ng-model="list.itemName" placeholder="item name">
+        <input type="text" ng-model="list.itemQuantity" placeholder="item quantity">
+        <button ng-click="list.addItem();">Add Item</button>
+        <br>
+        <span>{{list.lastRemoved}}</span>
+
+        <shopping-list
+            items="list.items"
+            title="{{list.title}}"
+            on-remove="list.removeItem(index)">
+        </shopping-list>
+
+    </div>
+
+    <!-- when some item is added to the shopping list asynchronously, we activate a spinner to tell the user that
+         something is going on and he should wait-->
+    <loading-spinner></loading-spinner>
+
+    <!-- Libraries -->
+
+    <script src="lib/jquery-3.1.1.min.js"></script> <!-- jQuery library --><!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="lib/angular.min.js"></script> <!-- AngularJS library -->
+
+
+    <!-- Modules -->
+
+    <script src="src/shoppinglist/shoppinglist.module.js"></script>
+    <script src="src/spinner/spinner.module.js"></script>
+
+    <!-- 'ShoppingList' module artifacts -->
+    <script src="src/shoppinglist/shoppinglist.component.js"></script>
+    <script src="src/shoppinglist/shoppinglist.controller.js"></script>
+    <script src="src/shoppinglist/shoppinglist.factory.js"></script>
+    <script src="src/shoppinglist/weightlossfilter.service.js"></script>
+
+    <!-- 'Spinner' module artifacts -->
+    <script src="src/spinner/loadingspinner.component.js"></script>
+
+</body>
+</html>
