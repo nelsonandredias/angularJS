@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RoutingModuleApp">
+<head>
+    <meta charset="UTF-8">
+    <!-- design responsive to mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module4-Routing</title>
+
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h3 class="text-center">Intro to ui-router</h3>
+
+    <div class="tabs">
+        <!-- ui-sref (ui router state reference) - set the name of the state -->
+        <!-- ui-sref-active directive let us specify a CSS class to this particular tag when this state is active -->
+        <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
+        <a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a>
+        <!--<button ui-sref="tab2">Tab 2</button>-->
+    </div>
+
+    <ui-view></ui-view>
+
+
+    <!-- Libraries -->
+
+    <script src="lib/jquery-3.1.1.min.js"></script> <!-- jQuery library --><!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="lib/angular.min.js"></script> <!-- AngularJS library -->
+    <script src="lib/angular-ui-router.min.js"></script> <!-- Ui-router library -->
+
+
+    <!-- Modules -->
+
+    <script src="src/app.js"></script>
+
+
+</body>
+</html>
