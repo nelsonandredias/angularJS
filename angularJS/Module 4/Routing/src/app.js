@@ -4,7 +4,7 @@
 
 //creation of the module
 (function (){
-
+//best practice for protecting us from making mistakes
 'use strict';
 
 // RoutingModuleApp depends on ui-Router

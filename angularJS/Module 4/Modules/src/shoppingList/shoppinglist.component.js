@@ -9,7 +9,7 @@
 
 angular.module("ShoppingListModule")
 .component('shoppingList', {
-    templateUrl: 'src/shoppinglist/shoppinglist.template.html',
+    templateUrl: 'src/shoppinglist/shoppingList.template.html',
     controller: ShoppingListComponentController,
     bindings:{
         items: '<',

@@ -15,7 +15,7 @@ angular.module("ShoppingListComponentApp", [])
 .controller("ShoppingListController", ShoppingListController)
 .factory("ShopListFactory", ShoppingListFactory)
 .component("shoppingList", {
-    templateUrl: 'shoppingList.html',
+    templateUrl: 'shoppingList.template.html',
     controller: ShoppingListComponentController,
     // we won't define the "controller as", because angular will create an $ctrl scope automatically for us
     //define inputs and outputs with bindings
