@@ -1,0 +1,11 @@
+<!--<div id="list" ng-controller="MainShoppingListController as mainList">-->
+    <!-- link that let us go back to the home page-->
+    <a ui-sref="home">Home</a> &lt; <span>List</span>
+    <h3>Premade List with Absolutely No Cookies in it</h3>
+    <p>The page is not presented until the promise is resolved, meaning the page will be presented just if we have a list to show</p>
+    <!-- output our list through a component-->
+    <shopping-list items="mainList.items"></shopping-list>
+    <!-- here, it's where the child will insert its template -->
+    <ui-view></ui-view>
+<!--
+</div>-->
