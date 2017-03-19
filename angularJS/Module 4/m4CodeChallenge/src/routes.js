@@ -32,7 +32,6 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
             //ui-router will wait that items property to get resolved before take us to this state
             resolve: {
                 listOfCategories: ["MenuDataService", function (MenuDataService) {
-                    alert("resolve " + JSON.stringify(MenuDataService.getAllCategories()));
                     return MenuDataService.getAllCategories();
                 }]
             }

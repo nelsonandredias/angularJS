@@ -8,15 +8,32 @@
     'use strict';
 
     angular.module('data')
-        .component('categories', {
-            templateUrl: 'src/restaurantList/Categories/template/categories.template.html',
-            controller: ShoppingListComponentController,
+        .component('categoriesList', {
+            templateUrl: 'src/restaurantList/Categories/template/categoriesList.template.html',
+            controller: CategoriesComponentController,
             bindings:{
-                items: '<',
-                myTitle: '@title',
+                category: '<',
                 onRemove: '&'
             }
         });
 
 
 })();
+
+// Component's Controller
+CategoriesComponentController.$inject = ['$scope'];
+function CategoriesComponentController($scope){
+    var $ctrl = this;
+
+
+    //use life cycle methods of the component
+
+    // $onInit method is only executed once, when the controller is instanciated
+    $ctrl.$onInit = function () {
+        console.log("We are in $onInit();");
+
+    };
+
+
+
+}
