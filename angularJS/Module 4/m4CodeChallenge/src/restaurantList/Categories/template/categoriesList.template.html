@@ -1,6 +1,5 @@
-<div>Component</div>
 <ol>
     <li ng-repeat="category in $ctrl.category">
-        {{category.name}}
+        <a ui-sref="items({shortName:{{category.short_name}}})">{{category.name}}</a>
     </li>
 </ol>

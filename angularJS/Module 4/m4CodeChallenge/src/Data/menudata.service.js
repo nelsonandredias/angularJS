@@ -19,10 +19,11 @@ angular.module('data')
 
         var service = this;
 
-        var deferred = $q.defer();
+
 
         service.getAllCategories = function () {
 
+            var deferred = $q.defer();
 
             alert("Entered getAllCategories method");
             $http({
@@ -32,6 +33,7 @@ angular.module('data')
                 // this callback will be called asynchronously
                 // when the response is available
                 deferred.resolve(response);
+                return response.data;
 
             }, function errorCallback(error) {
                 // called asynchronously if an error occurs
@@ -47,7 +49,27 @@ angular.module('data')
         service.getItemsForCategory = function (categoryShortName) {
 
             alert("Entered getItemsForCategory method");
+            var deferred = $q.defer();
 
+            $http({
+                method: "GET",
+                url: (ApiBasePath + "/menu_items.json"),
+                params: {
+                    category: categoryShortName
+                }
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                deferred.resolve(response);
+
+
+            }, function errorCallback(error) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(error);
+            });
+
+            return deferred.promise;
 
 
         };

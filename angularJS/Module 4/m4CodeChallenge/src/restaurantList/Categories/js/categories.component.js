@@ -2,12 +2,12 @@
  * Created by andre on 3/19/2017.
  */
 
-//creation of the module
+//component's creation
 (function () {
 //best practice for protecting us from making mistakes
     'use strict';
 
-    angular.module('data')
+    angular.module('MenuApp')
         .component('categoriesList', {
             templateUrl: 'src/restaurantList/Categories/template/categoriesList.template.html',
             controller: CategoriesComponentController,
@@ -24,7 +24,6 @@
 CategoriesComponentController.$inject = ['$scope'];
 function CategoriesComponentController($scope){
     var $ctrl = this;
-
 
     //use life cycle methods of the component
 

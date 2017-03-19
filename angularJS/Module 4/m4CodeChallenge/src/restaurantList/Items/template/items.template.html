@@ -1,3 +1,11 @@
 <a ui-sref="categories">Categories</a>
 
 <div>list of items of selected menu item</div>
+
+<!-- output our menu item list through a component-->
+<!--<item-list menuItem="ItemsCtrl.allMenuItems"></item-list>-->
+<ol>
+    <li ng-repeat="items in ItemsCtrl.allMenuItems">
+        {{items.name}}
+    </li>
+</ol>

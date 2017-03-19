@@ -39,20 +39,18 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 
         //Item description page
         .state("items",{
-            url: "/items",
-            templateUrl: "./src/restaurantList/Items/template/items.template.html"
+            url: "/items/{shortName}",
+            templateUrl: "./src/restaurantList/Items/template/items.template.html",
+            controller: "ItemsController as ItemsCtrl",
+            resolve: {
+                listOfMenuItems: ["$stateParams", "MenuDataService", function ($stateParams, MenuDataService) {
+                    //return the promise
+                    return MenuDataService.getItemsForCategory($stateParams.shortName);
+                }]
+            }
 
         });
 
-        //Item description page
-        /*.state("mainList.itemDetail",{
-            templateUrl: "src/shoppingList/templates/item-detail.template.html",
-            controller: "ItemDetailController as itemdetail",
-            //we don't need to inject the items resolve property from the parent state - due to inherite capacity
-            params:{
-                itemId: null
-            }
-        });*/
 }
 
 })();
