@@ -22,26 +22,26 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
         //Home page
         .state("home",{
             url: "/",
-            templateUrl: "./src/restaurantList/templates/home.template.html"
+            templateUrl: "./src/restaurantList/Homepage/template/home.template.html"
         })
         //Premade list page
         .state("categories",{
             url:"/categories",
-            templateUrl: "./src/restaurantList/templates/categories.template.html"
-            /*controller: "MainShoppingListController as mainList",
+            templateUrl: "./src/restaurantList/Categories/template/categories.template.html",
+            controller: "CategoriesController as CategoriesCtrl",
             //ui-router will wait that items property to get resolved before take us to this state
             resolve: {
-                //the item property is going to resolve to a promise that it gets returned by ShoppingListService
-                items: ["ShoppingListService", function (ShoppingListService) {
-                    return ShoppingListService.getItems();
+                listOfCategories: ["MenuDataService", function (MenuDataService) {
+                    alert("resolve " + JSON.stringify(MenuDataService.getAllCategories()));
+                    return MenuDataService.getAllCategories();
                 }]
-            }*/
+            }
         })
 
         //Item description page
         .state("items",{
             url: "/items",
-            templateUrl: "./src/restaurantList/templates/items.template.html"
+            templateUrl: "./src/restaurantList/Items/template/items.template.html"
 
         });
 

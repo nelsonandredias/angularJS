@@ -1,0 +1,12 @@
+
+<a ui-sref="home">Homepage</a>
+
+<div ui-sref="items">list of all available categories of items on the menu</div>
+
+<!-- output our list through a component-->
+<!--<shopping-list items="mainList.items"></shopping-list>-->
+<ol>
+    <li ng-repeat="category in CategoriesCtrl.allCategories">
+        {{category.name}}
+    </li>
+</ol>
