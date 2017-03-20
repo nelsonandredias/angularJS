@@ -25,7 +25,7 @@ angular.module('data')
 
             var deferred = $q.defer();
 
-            alert("Entered getAllCategories method");
+            console.log("Entered getAllCategories method");
             $http({
                 method: "GET",
                 url: (ApiBasePath + "/categories.json")
@@ -47,9 +47,10 @@ angular.module('data')
 
         //
         service.getItemsForCategory = function (categoryShortName) {
-
-            alert("Entered getItemsForCategory method");
+            
             var deferred = $q.defer();
+
+            console.log("Entered getItemsForCategory method");
 
             $http({
                 method: "GET",

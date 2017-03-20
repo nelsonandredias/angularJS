@@ -3,9 +3,4 @@
 <div>list of items of selected menu item</div>
 
 <!-- output our menu item list through a component-->
-<!--<item-list menuItem="ItemsCtrl.allMenuItems"></item-list>-->
-<ol>
-    <li ng-repeat="items in ItemsCtrl.allMenuItems">
-        {{items.name}}
-    </li>
-</ol>
+<item-list items="ItemsCtrl.allMenuItems"></item-list>

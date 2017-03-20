@@ -17,6 +17,7 @@
 
         list.allMenuItems = listOfMenuItems.data.menu_items;
 
+
         console.log("controller: " + JSON.stringify(listOfMenuItems.data.menu_items));
 
     }

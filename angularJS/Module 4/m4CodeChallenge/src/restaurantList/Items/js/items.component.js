@@ -7,18 +7,19 @@
 //best practice for protecting us from making mistakes
     'use strict';
 
-    angular.module('MenuApp')
+   angular.module('MenuApp')
         .component('itemList', {
             templateUrl: 'src/restaurantList/Items/template/itemsList.template.html',
             controller: ItemsComponentController,
             bindings:{
-                menuItem: '<',
+                items: '<',
                 onRemove: '&'
             }
         });
 
 
 })();
+
 
 // Component's Controller
 ItemsComponentController.$inject = ['$scope'];
